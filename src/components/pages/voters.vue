@@ -1,4 +1,5 @@
 <template>
+  <div>
   <the-headersider></the-headersider>
 
 <h3>Enter parent/student ID number or names to check if he/she is a registered voter </h3>  
@@ -26,6 +27,7 @@
   </tbody>
 </table>
 <router-link to="/">Go back</router-link>
+</div>
 </template>
 <script>
 export default {
