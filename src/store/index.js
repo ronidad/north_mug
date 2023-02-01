@@ -156,35 +156,7 @@ const store = createStore({
       context.commit("VehicleTrips", trips);
     },
 
-    async studentForms(context) {
-      const url = `http://localhost:5000/get/students/:code`;
-
-      const response = await fetch(url, {
-        mode: "cors",
-        // credentials: "include",
-        headers: {
-          "Access-Control-Allow-Origin": true,
-        },
-      });
-      const responseData = await response.json();
-      if (!response.ok) {
-        //
-      }
-      const deductions = [];
-      for (const key in responseData) {
-        const deduction = {
-          id: key,
-          vehicle: responseData[key].vehicle,
-          type: responseData[key].type,      
-          money: responseData[key].money,
-          notes: responseData[key].notes,
-          date: responseData[key].date
-        };
-        deductions.push(deduction);
-      }
-      context.commit("Vehicledeductions", deductions);
-    },
-    
+       
     async LoadSchools(context) {
       const url = `http://localhost:5000/get/schools`;
 
