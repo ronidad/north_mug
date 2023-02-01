@@ -1,18 +1,14 @@
-import { createStore } from "vuex";
-
+import {createStore} from 'vuex';
 const store = createStore({
   state: {
     token: null,
     user: null,
 
-    
     clients: [],
-    payments:[],
-    schools:[],
-    students:[],
-    voters:[],
-
-    
+    payments: [],
+    schools: [],
+    students: [],
+    voters: [],
   },
   mutations: {
     setUser(state, user) {
@@ -27,16 +23,15 @@ const store = createStore({
     removeUser(state) {
       state.user = null;
     },
-    
+
     setSchools(state, schools) {
       state.schools = schools;
     },
     setStudents(state, students) {
       state.students = students;
     },
-    setVoters(state,voters){
-      state.voters = voters
-
+    setVoters(state, voters) {
+      state.voters = voters;
     },
     setClients(state, clients) {
       state.clients = clients;
@@ -44,10 +39,6 @@ const store = createStore({
     setPayments(state, payments) {
       state.payments = payments;
     },
-    
-
-
-   
   },
   actions: {
     clearToken(context) {
@@ -90,7 +81,6 @@ const store = createStore({
           needy_status: responseData[key].needy_status,
           reg_date: responseData[key].reg_date,
           class: responseData[key].student_class,
-          
         };
         students.push(student);
       }
@@ -119,8 +109,6 @@ const store = createStore({
           ward: responseData[key].ward,
           polling_station: responseData[key].polling_station,
           admission_number: responseData[key].admission_number,
-         
-          
         };
         voters.push(voter);
       }
@@ -146,17 +134,16 @@ const store = createStore({
         const trip = {
           id: key,
           vehicle: responseData[key].vehicle,
-          route: responseData[key].route,      
+          route: responseData[key].route,
           weight: responseData[key].weight,
           date: responseData[key].date,
-          amount: responseData[key].amount
+          amount: responseData[key].amount,
         };
         trips.push(trip);
       }
       context.commit("VehicleTrips", trips);
     },
 
-       
     async LoadSchools(context) {
       const url = `http://localhost:5000/get/schools`;
 
@@ -183,7 +170,6 @@ const store = createStore({
       }
       context.commit("setCourts", courts);
     },
-    
 
     async ClientPayments(context) {
       const url = `http://localhost:5000/get/payments`;
@@ -204,7 +190,7 @@ const store = createStore({
         const payment = {
           id: key,
           client_Id: responseData[key].client_id,
-          
+
           payment_date: responseData[key].payment_date,
           amount: responseData[key].amount,
         };
@@ -226,7 +212,7 @@ const store = createStore({
       if (!response.ok) {
         //
       }
-      console.log(responseData)
+      console.log(responseData);
       const payments = [];
       for (const key in responseData) {
         const payment = {
@@ -250,18 +236,22 @@ const store = createStore({
     revenues: (state) => state.revenues,
     allstudents: (state) => state.students,
     payments: (state) => state.payments,
-    voters: (state)=>state.voters,
+    voters: (state) => state.voters,
     // ClientPayments: (state) => state.clientPayments,
-    clientPaymentGetter: (state) => (client)=>state.clientpaymentz.filter(pay=>pay.client_id==client),
-    PaymentGetter: (state) => (client)=>state.payments.filter(pay=>pay.client_id==client),
-    clientName: (state) => (client)=> state.clients.filter(pay=>pay.client_id==client),
+    clientPaymentGetter: (state) => (client) =>
+      state.clientpaymentz.filter((pay) => pay.client_id == client),
+    PaymentGetter: (state) => (client) =>
+      state.payments.filter((pay) => pay.client_id == client),
+    clientName: (state) => (client) =>
+      state.clients.filter((pay) => pay.client_id == client),
     // clientName: (state) => (client)=> state.clients.filter(pay=pay.client_id=client)
-    formGetter: (state) => (code)=>state.students.filter(snumber=>snumber.tracking_code==code),
-    studentGetter: (state) => (sid)=>state.students.filter(snumber=>snumber.id_number==sid),
-    voterGetter: (state)=>(vid)=>state.voters.filter(vnumber=>vnumber.id_number==vid),
-
+    formGetter: (state) => (code) =>
+      state.students.filter((snumber) => snumber.tracking_code == code),
+    studentGetter: (state) => (sid) =>
+      state.students.filter((snumber) => snumber.id_number == sid),
+    voterGetter: (state) => (vid) =>
+      state.voters.filter((vnumber) => vnumber.id_number == vid),
   },
-
 
   //
 });

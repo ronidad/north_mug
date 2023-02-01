@@ -1,12 +1,12 @@
-{
+module.exports = {
     "env": {
         "browser": true,
         "es6": true,
         "node": true
     },
     "extends": [
-        "plugin:vue/essential",
-        "google"
+        "eslint:recommended",
+        "plugin:vue/essential"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -21,4 +21,4 @@
     ],
     "rules": {
     }
-}
+};

@@ -1,4 +1,5 @@
 <template>
+  <div>
   <the-headersider></the-headersider>
 
   <input type="text" v-model="search" placeholder="Search students" />
@@ -31,6 +32,7 @@
     </tbody>
   </table>
   <router-link to="/">Go back</router-link>
+</div>
 </template>
 <script>
 export default {
